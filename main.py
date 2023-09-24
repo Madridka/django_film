@@ -1,31 +1,33 @@
 from django.db import models
 
 
-# class Author(models.Model):
-#     author = models.CharField(max_length=50,
-#                               verbose_name='Режиссер')
-#
-#     def __str__(self):
-#         return self.author
+class Author(models.Model):
+    first_name = models.CharField(max_length=25,
+                                  verbose_name='Имя режиссера')
+    last_name = models.CharField(max_length=25,
+                                 verbose_name='Фамилия режиссера')
+
+    def __str__(self):
+        return self.last_name
 
 
 class Film(models.Model):
     title = models.CharField(max_length=100,
-                             verbose_name='Название фильма')
+                             verbose_name='Название книги')
     year_out = models.CharField(max_length=10,
                                 verbose_name='Год выпуска')
-    description = models.TextField(verbose_name='Сюжет фильма')
+    description = models.CharField(max_length=1000,
+                                   verbose_name='Сюжет фильма')
 
-    author = models.CharField(max_length=50,
-                              verbose_name='Режиссер')
-
-    genre = models.ManyToManyField('Genre',
-                                   verbose_name='Жанр')
+    author = models.ManyToManyField('Author',
+                                    verbose_name='Режиссер')
     country = models.ManyToManyField('Country',
-                                     verbose_name='Страна')
+                                      verbose_name='Язык')
 
     language = models.ForeignKey('Language', on_delete=models.CASCADE,
-                                 verbose_name='Язык')
+                                verbose_name='Страна')
+    genre = models.ForeignKey('Genre', on_delete=models.CASCADE,
+                              verbose_name='Жанр')
 
     url_kp = models.URLField(verbose_name='Ссылка на KINOPOISK')
 
