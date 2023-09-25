@@ -1,0 +1,15 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>Список фильмов</h1>
+{% for movie in film_list %}
+<details>
+    <summary>{{ movie.title }}</summary>
+    <h3>{{movie.id}}. {{ movie.title }}, {{ movie.year_out }} </h3>
+    <p><u>Жанр:</u> {{ movie.get_genre }}</p>
+    <p><u>Страна:</u> {{ movie.get_country }}</p>
+    <a href="{{movie.url_kp}}">Фильм на Кинопоиске</a>
+</details>
+{% endfor %}
+
+{% endblock %}

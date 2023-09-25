@@ -29,6 +29,16 @@ class Film(models.Model):
 
     url_kp = models.URLField(verbose_name='Ссылка на KINOPOISK')
 
+    def get_genre(self):
+        return ', '.join([str(g) for g in self.genre.all()])
+
+    def get_country(self):
+        return ', '.join([str(c) for c in self.country.all()])
+
+    class Meta:
+        verbose_name = 'Фильм'
+        verbose_name_plural = 'Фильмы'
+
     def __str__(self):
         return self.title
 
@@ -36,6 +46,10 @@ class Film(models.Model):
 class Genre(models.Model):
     genre = models.CharField(max_length=100,
                              verbose_name='Жанр')
+
+    class Meta:
+        verbose_name = 'Жанр'
+        verbose_name_plural = 'Жанры'
 
     def __str__(self):
         return self.genre
@@ -45,6 +59,10 @@ class Language(models.Model):
     language = models.CharField(max_length=20,
                                 verbose_name='Язык')
 
+    class Meta:
+        verbose_name = 'Язык'
+        verbose_name_plural = 'Языки'
+
     def __str__(self):
         return self.language
 
@@ -52,6 +70,10 @@ class Language(models.Model):
 class Country(models.Model):
     country = models.CharField(max_length=20,
                                verbose_name='Страна')
+
+    class Meta:
+        verbose_name = 'Страна'
+        verbose_name_plural = 'Страны'
 
     def __str__(self):
         return self.country
