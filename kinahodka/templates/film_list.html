@@ -1,0 +1,25 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<h1>Список фильмов</h1>
+<br>
+{% for movie in film_list %}
+<ul type="square">
+<li><details>
+    <summary><h5 style="color: #189e18">{{movie.id}}. {{ movie.title }}, {{ movie.year_out }}</h5></summary>
+        <p><u>Год производства:</u> {{ movie.year_out }}</p>
+        <p><u>Страна:</u> {{ movie.get_country }}</p>
+        <p><u>Жанр:</u> {{ movie.get_genre }}</p>
+        <p><u>Режиссер:</u> {{ movie.author }}</p>
+        <p><u>Язык:</u> {{ movie.language }}</p>
+        <p><u>Описание:</u> <br>
+        {{ movie.description }}
+        </p>
+        <h3><a href="{{movie.url_kp}}" target="_blank">Фильм на Кинопоиске</a></h3>
+<!--    target="_blank" нужен для open in new tab-->
+</details>
+</ul>
+{% endfor %}
+
+{% endblock %}

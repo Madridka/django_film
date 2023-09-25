@@ -1,15 +1,19 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-<h1>Список фильмов</h1>
-{% for movie in film_list %}
-<details>
-    <summary>{{ movie.title }}</summary>
-    <h3>{{movie.id}}. {{ movie.title }}, {{ movie.year_out }} </h3>
-    <p><u>Жанр:</u> {{ movie.get_genre }}</p>
-    <p><u>Страна:</u> {{ movie.get_country }}</p>
-    <a href="{{movie.url_kp}}">Фильм на Кинопоиске</a>
-</details>
-{% endfor %}
+
+<h1>Главная страница проекта КиНаходка</h1>
+
+    <p>Добро пожаловать на <em>КиНаходка</em>. Это некая пародия сайта КиноПоиск.
+    Веб-сайт разработан на Python/Django в качестве тестового задания.
+    Используемая БД - PostgreSQL.</p>
+
+<h2>Контент проекта</h2>
+
+    <p>База данных сайта с фильмами "КиНаходка" содержит следующее
+    количество фильмов: </p>
+<ul>
+    <li><strong>Общее количество фильмов в базе: </strong>{{num_films}}</li>
+</ul>
 
 {% endblock %}

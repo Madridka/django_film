@@ -5,7 +5,7 @@
         <title>КиНаходка</title>
     {% endblock  %}
     <meta charset="UTF-8">
-<!--    <meta name="viewport" content="width=device-width, initail-scale=1">-->
+    <meta name="viewport" content="width=device-width, initail-scale=1">
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -13,13 +13,12 @@
 
 <body>
     <div class="container-fluid">
-
         <div class="row">
             <div class="col-sm-2"><p>
                {% block sidebar %}
                 <ul class="sidebar-nav">
                     <li><a href="">Главная страница</a></li>
-                    <li><a href="">Все фильмы</a></li>
+                    <li><a href="{% url 'list' %}">Все фильмы</a></li>
                     <li><a href="">Фильмы по жанрам</a></li>
                     <br>
                     <li><a href="">Добавить фильм</a></li>
