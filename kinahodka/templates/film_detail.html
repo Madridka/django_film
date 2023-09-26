@@ -1,0 +1,31 @@
+{% extends "base_generic.html" %}
+{% block content %}
+<br>
+<h1><b><i>{{ movie.title }}</b></i></h1>
+    <div id="main">
+			<div id="content" class="left">
+				<div class="projects">
+					<div class="item">
+						<div class="image left">
+							<img src="{{ movie.img.url }}" width="100%">
+						</div>
+						<div class="text left">
+							<h4>Сюжет фильма:</h4>
+							<p>{{ movie.description }}</p>
+							<p><u><b>Год производства:</b></u> {{ movie.year_out }}</p>
+							<p><u><b>Страна:</b></u> {{ movie.get_country }}</p>
+							<p><u><b>Жанр:</b></u> {{ movie.get_genre }}</p>
+							<p><u><b>Режиссер:</b></u> {{ movie.author }}</p>
+							<p><u><b>Язык:</b></u> {{ movie.language }}</p>
+							<br>
+							<h3><a href="{{movie.url_kp}}" target="_blank">Фильм на Кинопоиске</a></h3>
+					<!--    target="_blank" нужен для open in new tab-->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+<div class="cl">&nbsp;</div>
+<div class="cl">&nbsp;</div>
+
+{% endblock %}

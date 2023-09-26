@@ -1,22 +1,32 @@
 {% extends "base_generic.html" %}
-{% block head %}
-
-{% endblock %}
-
-
+{% load static %}
 {% block content %}
-<br>
-<p><font size="11">Главная страница проекта КиНаходка</font></p>
-<br>
-    <p><font size="4">Добро пожаловать на <em>КиНаходка</em>. Это некая пародия сайта КиноПоиск.
-    Веб-сайт разработан на Python/Django в качестве тестового задания.
-    Используемая БД - PostgreSQL.</font></p>
+<div class="shell">
+	<div class="border">
+		<div id="main">
+			<div id="content" class="left">
 
-<br>
-<br>
-<p><font size="11">Контент проекта</font></p>
-<br>
-    <p><font size="4">База данных сайта с фильмами "КиНаходка" содержит следующее
-        количество фильмов: <strong><u>{{num_films}}</u></strong></font></p>
-<br>
+				<div class="projects">
+					<h3></h3>
+					<div class="item">
+						<div class="image left">
+							<img src="{% static 'images/logotip.png'%}" width="80%">
+						</div>
+						<div class="text left">
+							<h4>Техническое задание</h4>
+							<p>Текст задания: <br>Здравствуйте, Кирилл как и обещал, тех задание: Смотрите нужно при помощи jango
+                                построить классическое приложение (mvc) архитектуры  и также имеющее бд(Postgres)
+                                Приложение – это сервис по совету фильмов, где пользователи могут заходить
+                                авторизовываться и получать списки фильмов для просмотра</p>
+						</div>
+						<div class="cl">&nbsp;</div>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="cl">&nbsp;</div>
+		</div>
+	</div>
+</div>
 {% endblock %}
