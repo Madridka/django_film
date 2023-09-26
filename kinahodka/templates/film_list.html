@@ -10,29 +10,27 @@
 					<h3>{{ movie.title }}</h3>
 					<div class="item">
 						<div class="image left">
-							<a href="#"><img src="css/images/project01.jpg" alt="" /></a>
+							<a href=""><img src="{{ movie.img.url }}" width="120"></a>
 						</div>
 						<div class="text left">
 							<h4>Сюжет фильма:</h4>
 							<p>{{ movie.description }}</p>
-							<p><u>Год производства:</u> {{ movie.year_out }}</p>
-							<p><u>Страна:</u> {{ movie.get_country }}</p>
-							<p><u>Жанр:</u> {{ movie.get_genre }}</p>
-							<p><u>Режиссер:</u> {{ movie.author }}</p>
-							<p><u>Язык:</u> {{ movie.language }}</p>
+<!--							<p><u><b>Год производства:</b></u> {{ movie.year_out }}</p>-->
+<!--							<p><u><b>Страна:</b></u> {{ movie.get_country }}</p>-->
+<!--							<p><u><b>Жанр:</b></u> {{ movie.get_genre }}</p>-->
+<!--							<p><u><b>Режиссер:</b></u> {{ movie.author }}</p>-->
+<!--							<p><u><b>Язык:</b></u> {{ movie.language }}</p>-->
 							<br>
-							<h3><a href="{{movie.url_kp}}" target="_blank">Фильм на Кинопоиске</a></h3>
+							<h3><a href="{{movie.url_kp}}" target="_blank">Фильм на Кинопоиске</a> ||
+							<a href="" target="_blank">Оставить оценку и комментарий к фильму</a></h3>
 					<!--    target="_blank" нужен для open in new tab-->
 						</div>
-						<div class="cl">&nbsp;</div>
 					</div>
-
 				</div>
 			</div>
-
-			<div class="cl">&nbsp;</div>
 		</div>
-
+<div class="cl">&nbsp;</div>
+<div class="cl">&nbsp;</div>
 {% endfor %}
 
 {% endblock %}

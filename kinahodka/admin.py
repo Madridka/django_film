@@ -7,7 +7,7 @@ from .models import Film, Genre, Language, Country
 
 @admin.register(Film)
 class FilmAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'year_out', 'language', 'get_genre')
+    list_display = ('title', 'year_out', 'language', 'get_genre')
 
 """остальным моделям нет смысла редактировать вывод, там простейшие данные"""
 admin.site.register(Language)

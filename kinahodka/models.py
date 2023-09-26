@@ -34,6 +34,8 @@ class Film(models.Model):
 
     url_kp = models.URLField(verbose_name='Ссылка на KINOPOISK')
 
+    img = models.ImageField(verbose_name='Постер', upload_to='image/%Y')
+
     def get_genre(self):
         return ', '.join([str(g) for g in self.genre.all()])
         #функция для вывода жанров, т.к. genre manytomany и в админке не работает одиночный вывод
