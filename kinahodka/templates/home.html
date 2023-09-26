@@ -1,19 +1,26 @@
 {% extends "base_generic.html" %}
+{% block head %}
+ <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initail-scale=1">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+{% endblock %}
+
 
 {% block content %}
-
-<h1>Главная страница проекта КиНаходка</h1>
-
-    <p>Добро пожаловать на <em>КиНаходка</em>. Это некая пародия сайта КиноПоиск.
+<br>
+<p><font size="11">Главная страница проекта КиНаходка</font></p>
+<br>
+    <p><font size="4">Добро пожаловать на <em>КиНаходка</em>. Это некая пародия сайта КиноПоиск.
     Веб-сайт разработан на Python/Django в качестве тестового задания.
-    Используемая БД - PostgreSQL.</p>
+    Используемая БД - PostgreSQL.</font></p>
 
-<h2>Контент проекта</h2>
-
-    <p>База данных сайта с фильмами "КиНаходка" содержит следующее
-    количество фильмов: </p>
-<ul>
-    <li><strong>Общее количество фильмов в базе: </strong>{{num_films}}</li>
-</ul>
-
+<br>
+<br>
+<p><font size="11">Контент проекта</font></p>
+<br>
+    <p><font size="4">База данных сайта с фильмами "КиНаходка" содержит следующее
+        количество фильмов: <strong><u>{{num_films}}</u></strong></font></p>
+<br>
 {% endblock %}
