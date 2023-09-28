@@ -11,9 +11,9 @@ urlpatterns = [
     path('', views.FilmView.as_view(), name='home'),
     path('movies/', views.FilmListView.as_view(), name='movies'),
     path('movies/<int:pk>/', views.FilmDetail.as_view(), name='film_detail'),
-    path('movies/<int:pk>/', views.RatingDetail.as_view(), name='film_detail'),
-    path('review/<int:pk>/', views.AddRating.as_view(), name='add_rating'),
-    path('review/<int:pk>', views.AddComment.as_view(), name='add_comment')
+    path('review/<int:pk>/', views.AddComment.as_view(), name='add_comment'),
+    # path('rating/<int:pk>/', views.AddRating.as_view(), name='add_rating'),
+    # path('review/<int:pk>/rating', views.Average_Rating.as_view(), name='average_rating'),
 ]
 
 if settings.DEBUG:

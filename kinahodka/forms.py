@@ -1,14 +1,8 @@
 from django import forms
-from .models import Rating, Comment
+from .models import Comment
 
-
-class RatingForm(forms.ModelForm):
-    class Meta:
-        model = Rating
-        fields = ['rating']
-
-
+"""форма для комментариев и оценки от пользователя."""
 class CommentsForm(forms.ModelForm):
     class Meta:
         model = Comment
-        fields = ('name', 'email', 'comment')
+        fields = ('name', 'email', 'comment', 'rating')

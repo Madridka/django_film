@@ -4,12 +4,12 @@
 <div class="shell">
 	<div class="border">
     <div id="main">
-		<h1><b><i> {{ movie.title }} </b></i></h1> <br>
+		<h1><b><i> «{{ movie.title }}» </i></b></h1> <br>
 			<div id="content" class="left">
 				<div class="projects">
 					<div class="item">
 						<div class="image left">
-							<img src="{{ movie.img.url }}" width="100%">
+							<a href="{{movie.url_kp}}" target="_blank"><img src="{{ movie.img.url }}" width="100%"></a>
 						</div>
 						<div class="text left">
 							<h4>Сюжет фильма:</h4>
@@ -19,7 +19,7 @@
 							<p><u><b>Жанр:</b></u> {{ movie.get_genre }}</p>
 							<p><u><b>Режиссер:</b></u> {{ movie.author }}</p>
 							<p><u><b>Язык:</b></u> {{ movie.language }}</p>
-							<p><u><b>Оценка:</b></u> {{ rating.rating }}</p>
+							<p><u><b>Оценок на сайте:</b></u> {{movie.comment_set.all.count}}</p>
 							<br>
 							<h3><a href="{{movie.url_kp}}" target="_blank">Фильм на Кинопоиске</a></h3>
 					<!--    target="_blank" нужен для open in new tab-->
@@ -33,12 +33,7 @@
 	</div>
 </div>
 <div>
-	<form action="{% url 'add_rating' movie.id %}" method="post">
-		{% csrf_token %}
-		<input type="text" name="rating">
-		<input type="submit" value="Сохранить">
-	</form>
-<!--форма для комментариев-->
+<!--форма для комментариев и оценки-->
 <div>
 	<form action ="{% url 'add_comment' movie.id %}" method="post">
 		{% csrf_token %}
@@ -54,9 +49,34 @@
 			<label>Комментарий</label>
 			<textarea name="comment"></textarea>
 		</div>
+			<label>Рейтинг</label>
+			<input type="radio" id='1' name="rating" value="1">
+			<label for="1">1</label>
+
+			<input type="radio" id='2' name="rating" value="2">
+			<label for="2">2</label>
+
+			<input type="radio" id='3' name="rating" value="3">
+			<label for="3">3</label>
+
+			<input type="radio" id='4' name="rating" value="4">
+			<label for="4">4</label>
+
+			<input type="radio" id='5' name="rating" value="5">
+			<label for="5">5</label>
 		<div>
 			<input type="submit" value="Отправить">
 		</div>
 	</form>
 </div>
+</div>
+	<div>
+		{% for comment in movie.comment_set.all %}
+		<br>
+		<label><b>Имя:</b> {{comment.name}}</label><br>
+		<label><b>Комментарий:</b> {{comment.comment}}</label><br>
+		<label><b>Оценка:</b> {{comment.rating}}</label><br>
+		{% endfor %}
+
+	</div>
 {% endblock %}
