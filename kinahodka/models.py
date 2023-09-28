@@ -110,3 +110,6 @@ class Comment(models.Model):
 
 
 """система лайков под каждым фильмом. отслеживается ip адрес, поэтому накрутитки лайков не получится"""
+class Likes(models.Model):
+    ip = models.CharField(max_length=20, verbose_name='IP-адрес пользователя')
+    film = models.ForeignKey(Film, verbose_name='Фильм', on_delete=models.CASCADE)

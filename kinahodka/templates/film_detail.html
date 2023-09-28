@@ -4,7 +4,7 @@
 <div class="shell">
 	<div class="border">
     <div id="main">
-		<h1><b><i> «{{ movie.title }}» </i></b></h1> <br>
+		<h3><b><i> «{{ movie.title }}» </i></b></h3> <br>
 			<div id="content" class="left">
 				<div class="projects">
 					<div class="item">
@@ -32,24 +32,31 @@
 <div class="cl">&nbsp;</div>
 	</div>
 </div>
-<div>
+<div class="likes">
+	<div>
+		<p>Понравилось: {{ movie.likes_set.all.count}}</p>
+		<a href="{% url 'add_like' movie.id %}">Like</a>
+		<a href="{% url 'del_like' movie.id %}">Dislike</a>
+	</div>
 <!--форма для комментариев и оценки-->
-<div>
+<div class="form_comment">
+	<br><p><b>Оставить комментарий и оценку:</b></p>
 	<form action ="{% url 'add_comment' movie.id %}" method="post">
 		{% csrf_token %}
 		<div>
-			<label>Имя</label>
+			<label>Имя*</label>
 			<input type="text" name="name">
 		</div>
 		<div>
-			<label>E-mail</label>
+			<label>E-mail*</label>
 			<input type="email" name="email">
 		</div>
 		<div>
-			<label>Комментарий</label>
+			<label>Комментарий*</label>
 			<textarea name="comment"></textarea>
 		</div>
-			<label>Рейтинг</label>
+		<br>
+			<label>Рейтинг*</label>
 			<input type="radio" id='1' name="rating" value="1">
 			<label for="1">1</label>
 
@@ -71,6 +78,7 @@
 </div>
 </div>
 	<div>
+		<br><p><b>Текущие комментарии и оценки:</b></p>
 		{% for comment in movie.comment_set.all %}
 		<br>
 		<label><b>Имя:</b> {{comment.name}}</label><br>
