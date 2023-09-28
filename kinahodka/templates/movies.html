@@ -2,7 +2,11 @@
 {% load static %}
 {% block content %}
 <br>
-<h1>Список фильмов</h1>
+<div class="shell">
+	<div class="border"><br>
+		<center><h1>Список фильмов</h1></center><br>
+			</div>
+					</div>
 {% for movie in film_list %}
     <div id="main">
 			<div id="content" class="left">
@@ -14,7 +18,7 @@
 							<a href="{{movie.id}}" target="_blank"><img src="{{ movie.img.url }}" width="150"></a>
 						</div>
 						<div class="text left">
-							<h4>Сюжет фильма:</h4>
+							<h4>Сюжет фильма: {{ movie.rating}}</h4>
 							<p>{{ movie.description }}</p>
 							<br>
 							<h3><a href="{{movie.url_kp}}" target="_blank">Фильм на Кинопоиске</a> ||

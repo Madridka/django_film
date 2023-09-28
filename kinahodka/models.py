@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 """был класс про Режиссеров, но удалил, т.к. нет смысла добавлять фамилии режиссеров в БД, 
 # можно просто оставить как текстовое поле"""
@@ -87,3 +88,30 @@ class Country(models.Model):
 
     def __str__(self):
         return self.country
+
+
+class Comment(models.Model):
+
+    name = models.CharField(max_length=20, verbose_name='Имя пользователя')
+    email = models.EmailField()
+    comment = models.TextField(max_length=1000, verbose_name='Текст комментария')
+    film = models.ForeignKey('Film', verbose_name='Фильм', on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = 'Комментарий'
+        verbose_name_plural = 'Комментарии'
+
+    def __str__(self):
+        return f'{self.name} {self.film}'
+
+
+class Rating(models.Model):
+    movie = models.ForeignKey('Film', verbose_name='Фильм', on_delete=models.CASCADE)
+    rating = models.CharField(max_length=2, verbose_name='Оценка')
+
+    class Meta:
+        verbose_name = 'Оценка'
+        verbose_name_plural = 'Оценки'
+
+    def __str__(self):
+        return self.rating

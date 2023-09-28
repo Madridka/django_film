@@ -1,8 +1,10 @@
 {% extends "base_generic.html" %}
 {% block content %}
 <br>
-<h1><b><i>{{ movie.title }}</b></i></h1>
+<div class="shell">
+	<div class="border">
     <div id="main">
+		<h1><b><i> {{ movie.title }} </b></i></h1> <br>
 			<div id="content" class="left">
 				<div class="projects">
 					<div class="item">
@@ -17,6 +19,7 @@
 							<p><u><b>Жанр:</b></u> {{ movie.get_genre }}</p>
 							<p><u><b>Режиссер:</b></u> {{ movie.author }}</p>
 							<p><u><b>Язык:</b></u> {{ movie.language }}</p>
+							<p><u><b>Оценка:</b></u> {{ rating.rating }}</p>
 							<br>
 							<h3><a href="{{movie.url_kp}}" target="_blank">Фильм на Кинопоиске</a></h3>
 					<!--    target="_blank" нужен для open in new tab-->
@@ -27,5 +30,33 @@
 		</div>
 <div class="cl">&nbsp;</div>
 <div class="cl">&nbsp;</div>
-
+	</div>
+</div>
+<div>
+	<form action="{% url 'add_rating' movie.id %}" method="post">
+		{% csrf_token %}
+		<input type="text" name="rating">
+		<input type="submit" value="Сохранить">
+	</form>
+<!--форма для комментариев-->
+<div>
+	<form action ="{% url 'add_comment' movie.id %}" method="post">
+		{% csrf_token %}
+		<div>
+			<label>Имя</label>
+			<input type="text" name="name">
+		</div>
+		<div>
+			<label>E-mail</label>
+			<input type="email" name="email">
+		</div>
+		<div>
+			<label>Комментарий</label>
+			<textarea name="comment"></textarea>
+		</div>
+		<div>
+			<input type="submit" value="Отправить">
+		</div>
+	</form>
+</div>
 {% endblock %}
