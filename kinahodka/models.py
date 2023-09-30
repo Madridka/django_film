@@ -109,7 +109,14 @@ class Comment(models.Model):
         return f'{self.name} {self.film}'
 
 
-"""система лайков под каждым фильмом. отслеживается ip адрес, поэтому накрутитки лайков не получится"""
+"""система лайков под каждым фильмом. отслеживается ip адрес, поэтому накрутить лайков не получится"""
 class Likes(models.Model):
     ip = models.CharField(max_length=20, verbose_name='IP-адрес пользователя')
     film = models.ForeignKey(Film, verbose_name='Фильм', on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = 'Лайк'
+        verbose_name_plural = 'Лайки'
+
+    def __str__(self):
+        return f'{self.film} {self.ip}'

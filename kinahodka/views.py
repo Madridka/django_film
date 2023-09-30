@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.views.generic.base import View
 from .models import Film, Likes
 from .forms import CommentsForm
-
+from django.http import HttpResponse
 """с помощью модуля View создание отображений(views)
 в классе функция обязательно должна быть get"""
 
@@ -40,6 +40,7 @@ class AddComment(View):
 
 
 def get_client_ip(request):
+    """получение ip-адреса клиента. если ip нет, то ремоте_аддр это типа прокси"""
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
     if x_forwarded_for:
         ip = x_forwarded_for.split(',')[0]
@@ -49,11 +50,15 @@ def get_client_ip(request):
 
 
 class AddLike(View):
+    """добавление лайков. обращение к классу лайки по ip и id, 1 Ip = 1 лайк на pk
+    если лайк уже поставлен то переведет на страницу заглушку
+    если лайка нет, то к модели Likes.ip ип клиента прибавится 1, а потом уже выдаю count по конкретному фильм_ид
+    """
     def get(self, request, pk):
         ip_client = get_client_ip(request)
         try:
             Likes.objects.get(ip=ip_client, film_id=pk)
-            return redirect(f'/movies/{pk}')
+            return HttpResponse('Лайк уже поставлен. Вернитесь назад')
         except:
             new_like = Likes()
             new_like.ip = ip_client
@@ -61,7 +66,9 @@ class AddLike(View):
             new_like.save()
             return redirect(f'/movies/{pk}')
 
-
+"""система с удалением лайка действует так: по ип клиента определяется ставил ли лайк
+если ставил, то из модели Likes ип клиента удаляется, и каунт уменьшается на 1
+если удалять лайк не надо, то показательно появится httpresponse заглушка"""
 class DelLike(View):
     def get(self, request, pk):
         ip_client = get_client_ip(request)
@@ -70,4 +77,4 @@ class DelLike(View):
             lik.delete()
             return redirect(f'/movies/{pk}')
         except:
-            return redirect(f'/movies/{pk}')
+            return HttpResponse('Нечего удалять. Вернитесь назад')

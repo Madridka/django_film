@@ -1,6 +1,7 @@
 from django import forms
 from .models import Comment
 
+
 """форма для комментариев и оценки от пользователя."""
 class CommentsForm(forms.ModelForm):
     class Meta:
