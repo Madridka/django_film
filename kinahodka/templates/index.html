@@ -1,6 +1,27 @@
-<h1>{{ movie.title }}</h1>
-  <form method="post">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<br><br><br>
+<div>
+<form action="{% url 'rating' movie.id %}" method="POST">
     {% csrf_token %}
-    {{ form }}
-    <button type="submit">Rate</button>
-  </form>
+    {{ form.as_p }}
+    <button type="submit">Добавить</button>
+</form>
+</div>
+
+<div>
+		<br><p><b>Текущие комментарии и оценки:</b></p>
+		{% for rating in rate %}
+		<br>
+		<label><b>Имя:</b> {{rating.name}}</label><br>
+		<label><b>Оценка:</b> {{rating.rating}}</label><br>
+		{% endfor %}
+
+	</div>
+</body>
+</html>

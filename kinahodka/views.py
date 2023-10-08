@@ -1,10 +1,12 @@
+import random
+
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import UpdateView, DeleteView
 from django.views.generic.base import View
 from .models import Film, Likes
 from .forms import CommentsForm, AddFilm
-from django.http import HttpResponse, HttpResponseNotFound
+from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 
 """с помощью модуля View создание отображений(views)
 в классе функция обязательно должна быть get"""
@@ -106,3 +108,9 @@ def delete_film(request, pk):
         return redirect('/')
     except Film.DoesNotExist:
         return HttpResponseNotFound('<h1>Фильм не найден</h1>')
+
+
+def random_page(request):
+    random_film = random.choice(Film.objects.all())
+    return HttpResponseRedirect(f'/movies/{random_film}')
+

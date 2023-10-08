@@ -30,6 +30,8 @@ urlpatterns = [
 
     path('add_film/', views.add_film, name='add_film'),
     url(r'^movies/update/(?P<pk>\d+)$', views.FilmUpdate.as_view(), name='film_update'),
+
+    path("random/", views.random_page, name="random"),
 ]
 
 if settings.DEBUG:

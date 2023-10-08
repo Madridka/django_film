@@ -6,7 +6,7 @@ from .models import *
 class CommentsForm(forms.ModelForm):
     class Meta:
         model = Comment
-        fields = ('name', 'email', 'comment', 'rating')
+        fields = '__all__'
 
 
 class AddFilm(forms.ModelForm):

@@ -46,7 +46,7 @@ class Film(models.Model):
         #класс мета - данные о данных, чтобы в админке выводилось не Films, а Фильмы
 
     def __str__(self):
-        return self.title
+        return str(self.id)
 
     def get_absolute_url(self):
         return reverse('film_detail', args=[str(self.id)])
@@ -99,10 +99,18 @@ class Language(models.Model):
 но в теории можно брать все оценки, находить средний результат и выводить как оценка фильма пользователями сайта
 через set.all.count можно вывести количество оценок, но хз как посчитать среднее"""
 class Comment(models.Model):
+    RATING_CHOICES = (
+        ('1', '1'),
+        ('2', '2'),
+        ('3', '3'),
+        ('4', '4'),
+        ('5', '5')
+    )
+
     name = models.CharField(max_length=20, verbose_name='Имя пользователя')
     email = models.EmailField()
     comment = models.TextField(max_length=1000, verbose_name='Текст комментария')
-    rating = models.SmallIntegerField(verbose_name='Оценка', default=0)
+    rating = models.CharField(verbose_name='Оценка', max_length=2, choices=RATING_CHOICES)
     film = models.ForeignKey('Film', verbose_name='Фильм', on_delete=models.CASCADE)
 
     class Meta:
