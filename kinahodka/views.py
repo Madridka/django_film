@@ -1,8 +1,11 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
+from django.views.generic import UpdateView, DeleteView
 from django.views.generic.base import View
 from .models import Film, Likes
-from .forms import CommentsForm
-from django.http import HttpResponse
+from .forms import CommentsForm, AddFilm
+from django.http import HttpResponse, HttpResponseNotFound
+
 """с помощью модуля View создание отображений(views)
 в классе функция обязательно должна быть get"""
 
@@ -78,3 +81,28 @@ class DelLike(View):
             return redirect(f'/movies/{pk}')
         except:
             return HttpResponse('Нечего удалять. Вернитесь назад')
+
+
+def add_film(request):
+    if request.method == 'POST':
+        form = AddFilm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('/movies/')
+    else:
+        form = AddFilm()
+    return render(request, 'film_add_form.html', {'form': form})
+
+
+class FilmUpdate(UpdateView):
+    model = Film
+    fields = '__all__'
+
+
+def delete_film(request, pk):
+    try:
+        film = Film.objects.get(id=pk)
+        film.delete()
+        return redirect('/')
+    except Film.DoesNotExist:
+        return HttpResponseNotFound('<h1>Фильм не найден</h1>')

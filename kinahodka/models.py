@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 """полная база про фильм. 
@@ -46,6 +47,9 @@ class Film(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('film_detail', args=[str(self.id)])
 
 
 """MtM отношение, чтобы можно было выбрать несколько жанров к 1ому фильму"""

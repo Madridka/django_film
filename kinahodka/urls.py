@@ -2,6 +2,7 @@
 в основном файле urls.py проекта через include ссылка сюда"""
 
 from django.urls import path
+from django.urls import re_path as url
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
@@ -26,6 +27,9 @@ urlpatterns = [
     path('movies/<int:pk>/del_like', views.DelLike.as_view(), name='del_like'),
     # в этих 2 path идет обработка вьюшек addlike и dellike, которые через связь по ip клиента
     # либо добавляют этот самый ip клиента в базу, для последующего count лайков
+
+    path('add_film/', views.add_film, name='add_film'),
+    url(r'^movies/update/(?P<pk>\d+)$', views.FilmUpdate.as_view(), name='film_update'),
 ]
 
 if settings.DEBUG:

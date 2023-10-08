@@ -4,7 +4,7 @@ from .models import Film, Genre, Language, Country, Comment, Likes
 
 @admin.register(Film)
 class FilmAdmin(admin.ModelAdmin):
-    list_display = ('title', 'year_out', 'language', 'get_genre')
+    list_display = ('title', 'id', 'year_out', 'language', 'get_genre')
     list_filter = ('year_out', 'language', 'genre')
     # регистрация в админке вывода лист_дисплея. get_genre - отдельная функция в моделях,
     # где через for выводятся все жанры, т.к. модель MtM. Если выводить страны - то так же через get_country

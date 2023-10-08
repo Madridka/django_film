@@ -1,0 +1,14 @@
+{% extends "base_generic.html" %}
+{% block content %}
+<div>
+<form action="{% url 'add_film' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+    </table>
+
+    <button type="submit">Добавить</button>
+</form>
+</div>
+
+{% endblock %}
